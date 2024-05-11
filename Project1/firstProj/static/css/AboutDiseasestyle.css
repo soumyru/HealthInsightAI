@@ -1,0 +1,117 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('../images/img9.jpg');
+    background-size: cover;
+    background-position: center;
+    /* background-color: rgba(0, 0, 0, 0.5);  */
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Fixed background image */
+    background-origin: content-box;
+    background-clip: border-box, border-box;
+}
+
+.about-heading {
+    display: flex;
+    background-color: black;
+    justify-content: center;
+    color: white;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-bottom: 20px; /*Added margin-bottom to create space between about heading and background image*/
+}
+
+header {
+    /* background-color: rgba(255, 255, 255, 0.8); translucent white background */
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.home-button, .login-button {
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.home-button:hover, .login-button :hover{
+    background-color: #0255ae;
+}
+main {
+    padding: 20px;
+    text-align: center; 
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    display: inline-block;
+    color: black;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.54); 
+    margin-bottom: 10px;
+    border-radius: 0 15px 0 15px;
+    /* font-weight: bold;  */
+}
+
+input[type="text"] {
+    width: 60%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 0 auto; 
+    display: block;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px auto; 
+    display: block;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#diseaseInfo {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    color: black;
+    width: 60%;
+    margin: 0 auto;
+    position: relative;
+}
+
+#diseaseName {
+    width: 60%;
+    margin: 0 auto; 
+    display: block;
+}
+
+.close-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}

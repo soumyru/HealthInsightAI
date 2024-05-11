@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			background-color: #f4f4f4;
+		}
+		
+		header {
+			background-color: #333;
+			color: #fff;
+			text-align: center;
+			padding: 10px;
+		}
+		
+		nav {
+			display: flex;
+			justify-content: space-between;
+			background-color: #eee;
+			padding: 10px;
+		}
+		
+		nav a {
+			text-decoration: none;
+			color: #333;
+			border-radius: 5px;
+			background-color: #fff;
+			padding: 10px 20px;
+			transition: background-color 0.3s ease;
+		}
+		
+		nav a:hover {
+			background-color: #ddd;
+		}
+		
+		section {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			align-items: center;
+			padding: 20px;
+		}
+		
+		form {
+			margin-bottom: 20px;
+		}
+		
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			margin-top: 20px;
+		}
+		
+		th, td {
+			border: 1px solid #ddd;
+			padding: 8px;
+			text-align: left;
+		}
+		
+		th {
+			background-color: #f2f2f2;
+		}
+	</style>
+</head>
+<body>
+	
+	<header>
+		<h1>Find your Doctor</h1>
+	</header>
+	
+	<nav>
+		<p><a href="{{ url_for('index')}}">Home</a></p>
+		<p>
+			{% if isLoggedIn %}
+			Hello {{ email }}
+			{% else %}
+			<a href="{{ url_for('login')}}">Log In</a>
+			{% endif %}
+		</p>
+	</nav>
+	
+	<section>
+		<form id="searchForm">
+			<input type="text" id="searchInput" placeholder="Enter your disease" style="padding: 8px; border: none; border-radius: 5px;">
+			<button type="submit" style="background-color: #4285f4; color: #fff; padding: 8px 16px; border: none; border-radius: 5px;">Find</button>
+		</form>
+		
+		<table id="resultsTable">
+			<thead>
+				<tr>
+					<th>Doctor Name</th>
+					<th>Specialty</th>
+					<th>Contact</th>
+				</tr>
+			</thead>
+			<tbody id="resultsBody">
+				<!-- Initial table entries will be filled here -->
+			</tbody>
+		</table>
+	</section>
+	
+	<script>
+		// JavaScript for handling form submission and updating the table
+		document.getElementById("searchForm").addEventListener("submit", function(event) {
+			event.preventDefault(); // Prevent default form submission
+			
+			// Get search input value
+			var searchQuery = document.getElementById("searchInput").value;
+			
+			// Make an AJAX request to Flask server with search query
+			fetch("/search", {
+				method: "POST",
+				body: JSON.stringify({ query: searchQuery }),
+				headers: {
+					"Content-Type": "application/json"
+				}
+			})
+			.then(response => response.json())
+			.then(data => {
+				// Clear previous results
+				document.getElementById("resultsBody").innerHTML = "";
+				
+				// Populate table with search results
+				data.forEach(entry => {
+					var newRow = document.createElement("tr");
+					newRow.innerHTML = `
+					<td>${entry.doctorName}</td>
+					<td>${entry.specialty}</td>
+					<td>${entry.contact}</td>
+					`;
+					document.getElementById("resultsBody").appendChild(newRow);
+				});
+			})
+			.catch(error => console.error('Error:', error));
+		});
+		
+		// Fetch initial table entries when the page loads
+		window.onload = function() {
+			fetch("/initial_entries")
+			.then(response => response.json())
+			.then(data => {
+				// Populate table with initial entries
+				data.forEach(entry => {
+					var newRow = document.createElement("tr");
+					newRow.innerHTML = `
+					<td>${entry.doctorName}</td>
+					<td>${entry.specialty}</td>
+					<td>${entry.contact}</td>
+					`;
+					document.getElementById("resultsBody").appendChild(newRow);
+				});
+			})
+			.catch(error => console.error('Error:', error));
+		};
+	</script>
+</body>
+</html>

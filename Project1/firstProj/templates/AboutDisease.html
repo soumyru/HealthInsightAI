@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/AboutDiseasestyle.css')}}">
+</head>
+<body>
+    <div class="about-heading">
+        <h1>About the disease</h1>
+    </div>
+    <header>
+        <a href="{{ url_for('index')}}" class="home-button">Home</a>
+        <a href="#" class="login-button">
+            {% if isLoggedIn %}
+			Hello {{ email }}
+			{% else %}
+			<a href="{{ url_for('login')}}">Log In</a>
+			{% endif %}
+        </a>
+    </header>
+    <main>
+        <form id="diseaseForm">
+            <label for="diseaseName">Enter the name of your disease</label>
+            <input type="text" id="diseaseName" name="diseaseName" required>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="diseaseInfo"></div>
+    </main>
+    <script src="{{ url_for('static', filename='js/AboutDiseasescript.js')}}"></script>
+</body>
+</html>

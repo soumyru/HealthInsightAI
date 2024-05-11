@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joy's Café Search</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background-color: #f2f2f2;
+            color: #333;
+        }
+        
+        h1 {
+            margin: 20px 0;
+            color: #4CAF50;
+        }
+        
+        label {
+            margin-right: 10px;
+            color: #333;
+        }
+        
+        input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        tr:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Joy's Café Search</h1>
+    <label for="searchBox">Search Cafes:</label>
+    <input type="text" id="searchBox" oninput="updateCafeList()">
+    <table id="cafeTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Street No</th>
+                <th>Locality</th>
+                <th>Postal Code</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+            </tr>
+        </thead>
+        <tbody id="cafeListBody"></tbody>
+    </table>
+    
+    <script>
+        const cafesEndpoint = 'https://raw.githubusercontent.com/debojyoti/places-fake-rest-api/master/cafes.json';
+        const placesEndpoint = 'https://raw.githubusercontent.com/debojyoti/places-fake-rest-api/master/places.json';
+        
+        async function fetchData(url) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                return null;
+            }
+        }
+        
+        async function fetchCafesAndPlaces() {
+            const cafesData = (await fetchData(cafesEndpoint)).cafes;
+            const placesData = (await fetchData(placesEndpoint)).places;
+            
+            if (cafesData && !cafesData.error && placesData && !placesData.error) {
+                const cafes = Array.isArray(cafesData) ? cafesData : [];
+                const places = Array.isArray(placesData) ? placesData : [];
+                return { cafes, places };
+            } else {
+                console.error('Error fetching data:', { cafesData, placesData });
+                return { cafes: [], places: [] };
+            }
+        }
+        
+        function filterCafes(cafes, places, searchTerm) {
+            return cafes.filter(cafe =>
+            cafe.name.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+        }
+        
+        function updateCafeList() {
+            const searchBox = document.getElementById('searchBox');
+            const searchTerm = searchBox.value.trim();
+            
+            fetchCafesAndPlaces().then(({ cafes, places }) => {
+                if (Array.isArray(cafes)) {
+                    const filteredCafes = searchTerm ? filterCafes(cafes, places, searchTerm) : cafes;
+                    displayCafes(filteredCafes, places);
+                } else {
+                    console.error('Cafes data is not an array:', cafes);
+                }
+            });
+        }
+        
+        function displayCafes(cafes, places) {
+            const cafeListBody = document.getElementById('cafeListBody');
+            cafeListBody.innerHTML = '';
+            
+            const placesMap = places.reduce((acc, place) => {
+                acc[place.id] = place;
+                return acc;
+            }, {});
+            
+            cafes.forEach(cafe => {
+                const placeDetails = placesMap[cafe.location_id];
+                
+                if (placeDetails) {
+                    const row = document.createElement('tr');
+                    const nameCell = document.createElement('td');
+                    const streetCell = document.createElement('td');
+                    const localityCell = document.createElement('td');
+                    const postalCell = document.createElement('td');
+                    const latCell = document.createElement('td');
+                    const longCell = document.createElement('td');
+                    
+                    nameCell.textContent = cafe.name;
+                    streetCell.textContent = placeDetails.street_no;
+                    localityCell.textContent = placeDetails.locality;
+                    postalCell.textContent = placeDetails.postal_code;
+                    latCell.textContent = placeDetails.lat;
+                    longCell.textContent = placeDetails.long;
+                    
+                    row.appendChild(nameCell);
+                    row.appendChild(streetCell);
+                    row.appendChild(localityCell);
+                    row.appendChild(postalCell);
+                    row.appendChild(latCell);
+                    row.appendChild(longCell);
+                    
+                    cafeListBody.appendChild(row);
+                } else {
+                    console.error(`Place details not found for cafe with location_id ${cafe.location_id}`);
+                }
+            });
+        }
+        
+        window.onload = function () {
+            
+            updateCafeList();
+        };
+    </script>
+</body>
+
+</html>
