@@ -10,7 +10,9 @@ This repository contains the code for our project: "Medical Image Classification
 
 - [System Specifications](#System_Specifications)
 - [Folder Structure](#Folder_Structure)
+- [Database Schema](#Database_Schema)
 - [Website Sample Screenshots](#Website_Sample_Screenshots)
+- [Important Links](#Important_Links)
 - [Contact](#Contact)
 
 ## System Specifications
