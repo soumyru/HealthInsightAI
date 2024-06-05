@@ -15,7 +15,7 @@ This repository contains the code for our project: "Medical Image Classification
 - [Important Links](#Important_Links)
 - [Contact](#Contact)
 
-## System Specifications
+## System_Specifications
 
 - Python Version: 3.10.11
 - CPU: Ryzen 5 4600H
@@ -23,13 +23,13 @@ This repository contains the code for our project: "Medical Image Classification
 - RAM: DDR4 16GB dual channel (8+8) @ 3200MHz
 - Storage: 512GB M.2 NVME SSD
 
-## Folder Structure
+## Folder_Structure
 ![image](https://github.com/soumyru/HealthInsightAI/assets/88626486/46307f7c-66d4-48b9-8ae1-f6e9e04752c9)
 
-## Database Schema
+## Database_Schema
 ![image](https://github.com/soumyru/HealthInsightAI/assets/88626486/4f2aa3d6-4877-4bfa-ab9f-4ca8a2b2f742)
 
-## Website Sample Screenshots
+## Website_Sample_Screenshots
 
 ### Home Page
 ![image](https://github.com/soumyru/HealthInsightAI/assets/88626486/395598b4-d008-41bc-99ae-6abe8a474fde)
@@ -47,7 +47,7 @@ This repository contains the code for our project: "Medical Image Classification
 ![image](https://github.com/soumyru/HealthInsightAI/assets/88626486/55fdb057-a7ad-43bd-9e4c-8b06e00db70d)
 
 
-## Important Links
+## Important_Links
 
 ### Project Report
 [https://1drv.ms/b/s!Al1XqFvdfV3IkBWeDQ6MTkWWBF_t?e=gZWItW](https://1drv.ms/b/s!Al1XqFvdfV3IkBWeDQ6MTkWWBF_t?e=gZWItW)
