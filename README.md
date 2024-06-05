@@ -53,36 +53,21 @@ This repository contains the code for our project: "Medical Image Classification
 [https://1drv.ms/b/s!Al1XqFvdfV3IkBWeDQ6MTkWWBF_t?e=gZWItW](https://1drv.ms/b/s!Al1XqFvdfV3IkBWeDQ6MTkWWBF_t?e=gZWItW)
 
 ### Model Source Code links
-  #### Brain MRI Scan to Detect Dementia
-  https://github.com/ayan-naskar/Dimentia-Detection/tree/main
+  #### - Brain MRI Scan to Detect Dementia: [https://github.com/ayan-naskar/Dimentia-Detection/tree/main](https://github.com/ayan-naskar/Dimentia-Detection/tree/main)
   
-  #### Chest X-Ray Scan to Detect Pneumonia
+  #### - Chest X-Ray Scan to Detect Pneumonia: https://www.kaggle.com/code/liltoeturtle/pneumonia-disease-detection?scriptVersionId=152154096
   
-  https://www.kaggle.com/code/liltoeturtle/pneumonia-disease-detection?scriptVersionId=152154096
+  #### - Skin Disease Detection: https://www.kaggle.com/code/snk125/skin-disease-final?scriptVersionId=152147583
   
-  #### Skin Disease Detection 
+  #### - Retinal Scan: https://www.kaggle.com/code/liltoeturtle/retinal-disease-detection/output?scriptVersionId=152148102
   
-  https://www.kaggle.com/code/snk125/skin-disease-final?scriptVersionId=152147583
+  #### - Chest Ultrasonography to detect Breast Cancer: https://www.kaggle.com/code/snk125/breast-cancer2/notebook?scriptVersionId=152150442
   
-  #### Retinal Scan
+  #### - Type of Medical Image Detection model: https://github.com/Snk-01/Medical-Image-Type-Detector
   
-  https://www.kaggle.com/code/liltoeturtle/retinal-disease-detection/output?scriptVersionId=152148102
+  #### - Final Integration – Prototype: https://github.com/Snk-01/Final-Integration
   
-  #### Chest Ultrasonography to detect Breast Cancer
-  
-  https://www.kaggle.com/code/snk125/breast-cancer2/notebook?scriptVersionId=152150442
-  
-  #### Type of Medical Image Detection model
-  
-  https://github.com/Snk-01/Medical-Image-Type-Detector
-  
-  #### Final Integration – Prototype
-  
-  https://github.com/Snk-01/Final-Integration
-  
-  #### Leukemia
-  
-  https://www.kaggle.com/datasets/andrewmvd/leukemia-classification
+  #### - Leukemia: https://www.kaggle.com/datasets/andrewmvd/leukemia-classification
 
 ## Contact
 
